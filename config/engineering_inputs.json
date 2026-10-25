@@ -1,0 +1,32 @@
+{
+  "units": {"length": "mm", "force": "N", "moment": "N*m", "mass": "g", "stress": "MPa"},
+  "software": {"cad": "Autodesk Fusion", "fe_and_optimization": "nTop 6.0.3"},
+  "cad": {"master": "tooling_arm_baseline_v02.f3d", "export": "cad/baseline/tooling_arm_baseline_v02.step"},
+  "geometry": {
+    "robot_plate": {"x": [0, 10], "y": [-40, 40], "z": [-40, 40], "holes": "4 x d6.6 at (y,z)=(+-28,+-28)"},
+    "root_boss": {"diameter": 50, "x": [10, 30]},
+    "design_envelope": {"x": [25, 225], "y": [-32, 32], "z": [-25, 25]},
+    "handling_pad": {"diameter": 52, "centre_xy": [185, 0], "z": [20, 35], "holes": "4 x d4.2 blind z=35..25 at (x,y)=(185+-12,+-12)"},
+    "rotary_hub": {"diameter": 40, "x": [215, 230]},
+    "rotary_flange": {"diameter": 80, "x": [230, 240], "holes": "4 x d5.5 on pcd 60"}
+  },
+  "material": {"name": "isotropic aluminium benchmark", "E_GPa": 70, "poisson": 0.33, "density_kg_m3": 2700},
+  "support": "rear face x=0 fixed in all translations",
+  "load_cases": {
+    "A_handling": {"force_N": [0, 0, -250], "applied_on": "pad top face z=35"},
+    "B_rotary": {"force_N": [-300, 0, 0], "moment_Nm": [24, 0, 0], "moment_point_mm": [240, 0, 0],
+                 "moment_connector": "flexible (RBE3)", "applied_on": "flange end face x=240"}
+  },
+  "volumes_mm3": {"baseline": 808438.0096, "preserved": 211905.9089, "designable": 596532.1007},
+  "budget": {"designable_fraction": 0.35, "target_volume_mm3": 420692.1441, "target_mass_g": 1135.8688,
+             "full_body_volume_fraction": 0.52038},
+  "optimization": {
+    "fe_mesh": "linear tetrahedra, 2.5 mm, 396426 elements, 71589 nodes",
+    "max_iterations": 100, "min_objective_change": 0.0005, "min_density_change": 0.01,
+    "boundary_penalty": 0.5, "filter_size_mm": 8, "save_increment": 5,
+    "dual_weights": {"A": 9.718173, "B": 7.372457, "source": "0.5 / iteration-1 compliance (0.05145 J, 0.06782 J)"}
+  },
+  "reconstruction": {"density_threshold": 0.5, "steps": "smoothen, union with preserved, intersect with baseline"},
+  "final_mass_g": {"baseline": 2182.7826, "handling": 1143.2641, "rotary": 1162.8088, "dual": 1156.5656},
+  "iterations": {"handling": 37, "rotary": 38, "dual": 38}
+}

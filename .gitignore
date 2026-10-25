@@ -1,0 +1,18 @@
+# ntop notebook is ~1 GB, too big for github
+*.ntop
+ntop/*
+!ntop/README.md
+
+# raw nTop point-map exports stay local, summary is in results/
+results/raw/
+
+__pycache__/
+*.pyc
+.venv/
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+# internal notes, old versions, docx and build scripts, kept locally
+_local/
