@@ -10,7 +10,7 @@ I wanted to know what happens to an optimized part when it has more than one job
 
 ## How it was done
 
-The baseline arm was modelled in Fusion with named parameters and taken into nTop 6.0.3 as STEP. The robot plate, the handling pad and the rotary flange were kept solid, and the optimizer was allowed to keep 35 % of the material in between.
+The baseline arm was modelled in Fusion with named parameters and taken into nTop as STEP. The robot plate, the handling pad and the rotary flange were kept solid, and the optimizer was allowed to keep 35 % of the material in between.
 
 The three optimizations used the same mesh, material, budget and settings; only the objective changed. The dual-mode run keeps the two load cases separate and adds their compliances with weights, instead of applying both loads at once.
 
